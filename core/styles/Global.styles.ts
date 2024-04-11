@@ -1,21 +1,23 @@
+/**
+ * @author Dominic Hiland
+ */
+
 import {TextStyle, Platform} from "react-native";
 
 interface Colors {
   primary: string,
   secondary: string,
-  success: string,
-  warning: string,
-  danger: string,
+  secondaryLighten1: string,
+  secondaryLighten2: string,
   background: string,
 }
 
 export const colors: Colors = {
-  primary: '#000',
-  secondary: '#000',
-  success: '#000',
-  warning: '#000',
-  danger: '#000',
-  background: '#000',
+  primary: '#502d3b',
+  secondary: '#bed9b9',
+  secondaryLighten1: '#eaf7ea',
+  secondaryLighten2: '#f7fff8',
+  background: '#FFF',
 }
 
 export interface Fonts {
@@ -58,13 +60,13 @@ export function fonts(): Fonts {
   else if (os === 'android') return androidFonts
   else {
     return {
-      h1: {fontFamily: 'Roboto', fontSize: 16},
-      h2: {fontFamily: 'Roboto', fontSize: 16},
-      h3: {fontFamily: 'Roboto', fontSize: 16},
-      body1: {fontFamily: 'Roboto', fontSize: 16},
-      body2: {fontFamily: 'Roboto', fontSize: 16},
-      subtitle1: {fontFamily: 'Roboto', fontSize: 16},
-      subtitle2: {fontFamily: 'Roboto', fontSize: 16},
+      h1: {fontFamily: 'Arial', fontSize: 24},
+      h2: {fontFamily: 'Arial', fontSize: 24},
+      h3: {fontFamily: 'Arial', fontSize: 24},
+      body1: {fontFamily: 'Arial', fontSize: 24},
+      body2: {fontFamily: 'Arial', fontSize: 24},
+      subtitle1: {fontFamily: 'Arial', fontSize: 24},
+      subtitle2: {fontFamily: 'Arial', fontSize: 24},
     }
   }
 }

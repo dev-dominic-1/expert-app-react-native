@@ -1,14 +1,22 @@
 import React from "react";
-import {Button, View} from "react-native";
-import {PillButton} from "../../core/components/pill-button/PillButton";
+import { Text } from "react-native";
+import { PillButton } from "../../core/components/pill-button/PillButton";
+import ComfortView from "../../core/components/comfort-view/ComfortView";
 
-// @ts-ignore
 export const Home = (props: { navigation: any }) => {
   return (
-    <View style={{alignContent: 'center', justifyContent: 'center'}}>
-      <PillButton title="Account" onPress={() => {
-        props.navigation.navigate("Profile");
-      }} styles={{button: { marginHorizontal: 10 }}} />
-    </View>
-  )
-}
+    <ComfortView
+      style={{ justifyContent: "space-between", alignItems: "center" }}
+    >
+      <Text>Home</Text>
+      <PillButton
+        title="Profile"
+        onPress={() => {
+          props.navigation.navigate("Profile");
+        }}
+        variant="outlined"
+        style={{ button: { marginHorizontal: 10 } }}
+      />
+    </ComfortView>
+  );
+};

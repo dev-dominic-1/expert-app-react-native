@@ -17,6 +17,7 @@ export const styles: PillButtonStyles = StyleSheet.create({
     width: 'auto',
   },
   text: Object.assign({
-    color: 'white'
+    color: 'white',
+    paddingHorizontal: 32,
   }, systemFonts.body1)
 })

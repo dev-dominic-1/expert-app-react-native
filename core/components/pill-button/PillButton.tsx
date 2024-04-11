@@ -1,12 +1,13 @@
 import React from "react";
-import {Button, Pressable, Text, TextStyle, ViewStyle} from "react-native";
+import {Pressable, Text, TextStyle, ViewStyle} from "react-native";
 import {styles as PillButtonStyles} from "./PillButton.styles"
 import {colors} from "../../styles/Global.styles";
 
 interface PillButtonProps {
   title: string,
   onPress: () => void,
-  styles?: {
+  variant: 'filled' | 'outlined'
+  style?: {
     button?: ViewStyle,
     text?: TextStyle
   }
@@ -15,8 +16,22 @@ interface PillButtonProps {
 export const PillButton = (props: PillButtonProps) => {
 
   const {button: pressableStyles = {}, text: textStyles = {}} = {
-      button: {...PillButtonStyles.button, ...(props.styles?.button ?? {})},
-      text: {...PillButtonStyles.text}, ...(props.styles?.text ?? {}),
+      button: {
+        ...PillButtonStyles.button, // Default styles
+        ...(props.variant === 'outlined' ? { // Outlined variant styles
+          backgroundColor: 'transparent',
+          borderColor: colors.primary,
+          borderWidth: 1,
+        } : {}),
+        ...(props.style?.button ?? {}), // Custom styles
+      },
+      text: {
+        ...PillButtonStyles.text, // Default styles
+        ...(props.variant === 'outlined' ? { // Outlined variant styles
+          color: colors.primary
+        } : {}),
+        ...(props.style?.text ?? {}), // Custom styles
+      },
     }
 
   return (
