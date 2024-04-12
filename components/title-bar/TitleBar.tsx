@@ -4,9 +4,8 @@ import {
   View,
   ViewStyle,
   Dimensions,
-  Image,
   ImageStyle,
-  Pressable,
+  TouchableOpacity,
 } from "react-native";
 import { colors } from "../../core/styles/Global.styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -35,11 +34,6 @@ const TitleBar = (props: TitleBarProps) => {
     alignItems: "center",
   };
 
-  const toolbarIconStyle: ImageStyle = {
-    height: 32,
-    width: 32,
-  };
-
   return (
     <ElevatedView
       style={{
@@ -63,21 +57,21 @@ const TitleBar = (props: TitleBarProps) => {
           width: "100%",
         }}
       >
-        <Pressable onPress={() => props.onPressContextMenu()}>
+        <TouchableOpacity onPress={() => props.onPressContextMenu()}>
           <Feather
             name="menu"
             size={32}
             color={colors.icon}
           />
-        </Pressable>
+        </TouchableOpacity>
         <Text style={{ fontWeight: "bold" }}>LOGO</Text>
-        <Pressable onPress={() => goTo(navigator, "Home", true)}>
+        <TouchableOpacity onPress={() => goTo(navigator, "Home", true)}>
           <Feather
             name="home"
             size={32}
             color={colors.icon}
           />
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </ElevatedView>
   );
