@@ -13,9 +13,11 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ElevatedView from "../../core/components/views/ElevatedView";
 import { goTo } from "../../core/navigation/Navigator";
 import { useNavigation } from "@react-navigation/native";
+import { Feather } from "@expo/vector-icons";
 
 interface TitleBarProps {
   style?: ViewStyle;
+  onPressContextMenu: Function;
 }
 
 const TitleBar = (props: TitleBarProps) => {
@@ -61,17 +63,19 @@ const TitleBar = (props: TitleBarProps) => {
           width: "100%",
         }}
       >
-        <Image
-          source={require("../../assets/icons/menu-custom.png")}
-          alt="Menu"
-          style={toolbarIconStyle}
-        />
-        <Text>LOGO</Text>
+        <Pressable onPress={() => props.onPressContextMenu()}>
+          <Feather
+            name="menu"
+            size={32}
+            color={colors.icon}
+          />
+        </Pressable>
+        <Text style={{ fontWeight: "bold" }}>LOGO</Text>
         <Pressable onPress={() => goTo(navigator, "Home", true)}>
-          <Image
-            source={require("../../assets/icons/home-outline-custom.png")}
-            alt="Home"
-            style={toolbarIconStyle}
+          <Feather
+            name="home"
+            size={32}
+            color={colors.icon}
           />
         </Pressable>
       </View>
