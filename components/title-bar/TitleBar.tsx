@@ -1,24 +1,26 @@
 import React from "react";
-import { Text, View, StyleSheet, ViewStyle, Dimensions } from "react-native";
+import {
+  Text,
+  View,
+  ViewStyle,
+  Dimensions,
+  Image,
+  ImageStyle,
+  Pressable,
+} from "react-native";
 import { colors } from "../../core/styles/Global.styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { LinearGradient } from "expo-linear-gradient";
 import ElevatedView from "../../core/components/views/ElevatedView";
+import { goTo } from "../../core/navigation/Navigator";
+import { useNavigation } from "@react-navigation/native";
 
 interface TitleBarProps {
   style?: ViewStyle;
 }
 
 const TitleBar = (props: TitleBarProps) => {
+  const navigator = useNavigation();
   const insets = useSafeAreaInsets();
-
-  const shadowStyle: ViewStyle = {
-    position: "absolute",
-    height: 10,
-    width: Dimensions.get("window").width,
-    bottom: -10,
-    left: 0,
-  };
 
   const safeAreaStyle: ViewStyle = {
     paddingTop: insets.top,
@@ -29,18 +31,12 @@ const TitleBar = (props: TitleBarProps) => {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingHorizontal: 24,
   };
 
-  const style = StyleSheet.create({
-    view: {
-      position: "relative",
-      ...safeAreaStyle,
-      ...flexStyle,
-      backgroundColor: colors.secondary,
-      ...(props.style ?? {}), // Custom Styles
-    },
-  });
+  const toolbarIconStyle: ImageStyle = {
+    height: 32,
+    width: 32,
+  };
 
   return (
     <ElevatedView
@@ -56,9 +52,29 @@ const TitleBar = (props: TitleBarProps) => {
         },
       }}
     >
-      <Text>1</Text>
-      <Text>LOGO</Text>
-      <Text>3</Text>
+      <View
+        style={{
+          ...flexStyle,
+          alignItems: "center",
+          paddingTop: 8,
+          paddingHorizontal: 20,
+          width: "100%",
+        }}
+      >
+        <Image
+          source={require("../../assets/icons/menu-custom.png")}
+          alt="Menu"
+          style={toolbarIconStyle}
+        />
+        <Text>LOGO</Text>
+        <Pressable onPress={() => goTo(navigator, "Home", true)}>
+          <Image
+            source={require("../../assets/icons/home-outline-custom.png")}
+            alt="Home"
+            style={toolbarIconStyle}
+          />
+        </Pressable>
+      </View>
     </ElevatedView>
   );
 };
