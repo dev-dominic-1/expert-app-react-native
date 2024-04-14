@@ -3,6 +3,7 @@ import { View, Text, Image, TouchableOpacity } from "react-native";
 import { fonts } from "../../core/styles/Global.styles";
 import { useNavigation } from "@react-navigation/native";
 import { goTo } from "../../core/navigation/Navigator";
+import RandomUserMe from "../../core/models/api/RandomUser.me";
 
 interface ContextMenuOptionProps {
   icon?: ReactNode;
@@ -17,10 +18,7 @@ const ContextMenuOption = (props: ContextMenuOptionProps) => {
   const [image, setImage] = React.useState<string | undefined>(undefined);
   useEffect(() => {
     if (!!icon) return; // Only pull an image if no icon was provided
-    fetch("https://randomuser.me/api/").then(async (res) => {
-      const { results } = await res.json();
-      setImage(results[0].picture.medium);
-    });
+    RandomUserMe.getSmall().then((r) => setImage(r));
   }, []);
 
   return (

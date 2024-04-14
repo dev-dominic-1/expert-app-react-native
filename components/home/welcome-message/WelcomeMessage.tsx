@@ -19,10 +19,10 @@ const WelcomeMessage = (props: WelcomeMessageProps) => {
         gap: 8,
       }}
     >
-      <Text style={fonts().h5}>Welcome, {props.name}!</Text>
-      <Text style={{ ...fonts().h6, color: "grey" }}>
-        Welcome Back! Here's what's coming up
+      <Text style={{ ...fonts().h5, fontSize: 16 }}>
+        Welcome, {props.name}!
       </Text>
+      <Text style={fonts().h6}>Welcome Back! Here's what's coming up</Text>
     </View>
   );
 };

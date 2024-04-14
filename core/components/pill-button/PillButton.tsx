@@ -7,6 +7,7 @@ interface PillButtonProps {
   title: string;
   onPress: () => void;
   variant: "filled" | "outlined";
+  height?: number;
   style?: {
     button?: ViewStyle;
     text?: TextStyle;
@@ -21,19 +22,19 @@ export const PillButton = (props: PillButtonProps) => {
         ? {
             // Outlined variant styles
             backgroundColor: "transparent",
-            borderColor: colors.primary,
+            borderColor: colors.accentDark,
             borderWidth: 1,
           }
         : {}),
       ...(props.style?.button ?? {}), // Custom styles
-      height: 50, // Forced styles
+      height: props.height ?? 40, // Forced styles
     },
     text: {
       ...PillButtonStyles.text, // Default styles
       ...(props.variant === "outlined"
         ? {
             // Outlined variant styles
-            color: colors.primary,
+            color: colors.accentDark,
           }
         : {}),
       ...(props.style?.text ?? {}), // Custom styles

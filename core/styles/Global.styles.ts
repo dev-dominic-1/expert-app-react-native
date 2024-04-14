@@ -3,6 +3,7 @@
  */
 
 import { TextStyle, Platform } from "react-native";
+import { useFonts } from "expo-font";
 
 interface Colors {
   primary: string;
@@ -61,18 +62,18 @@ export const iosFonts: Fonts = {
 };
 
 export const androidFonts: Fonts = {
-  h1: { fontFamily: "Roboto", fontSize: 24, fontWeight: "600" },
-  h2: { fontFamily: "Roboto", fontSize: 24 },
-  h3: { fontFamily: "Roboto", fontSize: 20, fontWeight: "600" },
-  h4: { fontFamily: "Roboto", fontSize: 20 },
-  h5: { fontFamily: "Roboto", fontSize: 18, fontWeight: "500" },
-  h6: { fontFamily: "Roboto", fontSize: 16 },
-  h7: { fontFamily: "Roboto", fontSize: 14 },
-  body1: { fontFamily: "Roboto", fontSize: 20, fontWeight: "300" },
-  body2: { fontFamily: "Roboto", fontSize: 18 },
-  body3: { fontFamily: "Roboto", fontSize: 16, fontWeight: "300" },
-  subtitle1: { fontFamily: "Roboto", fontSize: 14, fontWeight: "300" },
-  subtitle2: { fontFamily: "Roboto", fontSize: 12, fontWeight: "200" },
+  h1: { fontFamily: "Roboto-Bold", fontSize: 24 },
+  h2: { fontFamily: "Roboto-Regular", fontSize: 24 },
+  h3: { fontFamily: "Roboto-Bold", fontSize: 20 },
+  h4: { fontFamily: "Roboto-Regular", fontSize: 20 },
+  h5: { fontFamily: "Roboto-Medium", fontSize: 18 },
+  h6: { fontFamily: "Roboto-Regular", fontSize: 16 },
+  h7: { fontFamily: "Roboto-Regular", fontSize: 14 },
+  body1: { fontFamily: "Roboto-Light", fontSize: 20 },
+  body2: { fontFamily: "Roboto-Regular", fontSize: 18 },
+  body3: { fontFamily: "Roboto-Light", fontSize: 16 },
+  subtitle1: { fontFamily: "Roboto-Light", fontSize: 14 },
+  subtitle2: { fontFamily: "Roboto-Thin", fontSize: 12 },
 };
 
 /**
