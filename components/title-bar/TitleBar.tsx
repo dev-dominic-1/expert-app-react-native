@@ -1,11 +1,13 @@
 import React from "react";
 import {
   Text,
+  Image,
   View,
   ViewStyle,
   Dimensions,
   ImageStyle,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import { colors } from "../../core/styles/Global.styles";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -40,7 +42,7 @@ const TitleBar = (props: TitleBarProps) => {
         view: {
           ...safeAreaStyle,
           ...flexStyle,
-          backgroundColor: colors.secondary,
+          backgroundColor: colors.primary,
           ...(props.style ?? {}), // Custom Styles
         },
         shadow: {
@@ -60,16 +62,23 @@ const TitleBar = (props: TitleBarProps) => {
         <TouchableOpacity onPress={() => props.onPressContextMenu()}>
           <Feather
             name="menu"
-            size={32}
-            color={colors.icon}
+            size={24}
+            color={colors.primaryDark}
           />
         </TouchableOpacity>
-        <Text style={{ fontWeight: "bold" }}>LOGO</Text>
+        <Image
+          source={require("../../assets/Primary_Logo.png")}
+          alt="Logo"
+          style={{
+            height: 25,
+            width: Platform.OS === "web" ? 95 : 89,
+          }}
+        />
         <TouchableOpacity onPress={() => goTo(navigator, "Home", true)}>
           <Feather
             name="home"
-            size={32}
-            color={colors.icon}
+            size={24}
+            color={colors.primaryDark}
           />
         </TouchableOpacity>
       </View>

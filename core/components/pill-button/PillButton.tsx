@@ -26,6 +26,7 @@ export const PillButton = (props: PillButtonProps) => {
           }
         : {}),
       ...(props.style?.button ?? {}), // Custom styles
+      height: 50, // Forced styles
     },
     text: {
       ...PillButtonStyles.text, // Default styles

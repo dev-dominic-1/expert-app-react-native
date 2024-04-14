@@ -50,9 +50,12 @@ const ContextMenuOption = (props: ContextMenuOptionProps) => {
           ) : (
             <Image
               style={{
-                height: 32,
-                width: 32,
+                height: 24,
+                width: 24,
                 borderRadius: 999,
+                borderWidth: 1,
+                borderColor: "grey",
+                transform: [{ scale: 1.25 }],
               }}
               source={{ uri: image }}
               alt="Profile"

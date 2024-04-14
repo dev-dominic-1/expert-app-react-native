@@ -12,7 +12,7 @@ interface ContextMenuProps {
 const ContextMenuOptions = (props: ContextMenuProps) => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
-  const ICON_SIZE = 32;
+  const ICON_SIZE = 24;
 
   return (
     <>
@@ -40,7 +40,7 @@ const ContextMenuOptions = (props: ContextMenuProps) => {
           icon={
             <Feather
               name="phone-call"
-              color={colors.icon}
+              color={colors.primaryDark}
               size={ICON_SIZE}
             />
           }
@@ -51,7 +51,7 @@ const ContextMenuOptions = (props: ContextMenuProps) => {
           icon={
             <Feather
               name="settings"
-              color={colors.icon}
+              color={colors.primaryDark}
               size={ICON_SIZE}
             />
           }
@@ -62,7 +62,7 @@ const ContextMenuOptions = (props: ContextMenuProps) => {
           icon={
             <Feather
               name="help-circle"
-              color={colors.icon}
+              color={colors.primaryDark}
               size={ICON_SIZE}
             />
           }
