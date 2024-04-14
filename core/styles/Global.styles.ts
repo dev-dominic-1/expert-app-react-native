@@ -15,6 +15,7 @@ interface Colors {
   accent: string;
   accentDark: string;
   cardColor: string;
+  cardColorDark: string;
   background: string;
 }
 
@@ -27,7 +28,8 @@ export const colors: Colors = {
   secondaryDark: "#25502B",
   accent: "#AE8C99",
   accentDark: "#592A3C",
-  cardColor: "#D7EED8",
+  cardColor: "#E6F8E9",
+  cardColorDark: "#D7EED8",
   background: "#FFF",
 };
 

@@ -11,7 +11,7 @@ interface FindExpertTextInputProps {
 const FindExpertTextInput = (props: FindExpertTextInputProps) => {
   const ICON_SIZE: number = 24;
   const ICON_COLOR: string = "black";
-  const BACKGROUND_COLOR: string = colors.cardColor;
+  const BACKGROUND_COLOR: string = colors.cardColorDark;
 
   const [search, setSearch] = useState("");
 

@@ -13,7 +13,7 @@ const WelcomeMessage = (props: WelcomeMessageProps) => {
         borderRadius: 999,
         paddingVertical: 16,
         paddingHorizontal: 24,
-        backgroundColor: colors.cardColor,
+        backgroundColor: colors.cardColorDark,
         width: "100%",
         flexDirection: "column",
         gap: 8,
