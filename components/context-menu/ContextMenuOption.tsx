@@ -1,6 +1,6 @@
 import React, { ReactNode, useEffect } from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
-import { fonts } from "../../core/styles/Global.styles";
+import { colors, fonts } from "../../core/styles/Global.styles";
 import { useNavigation } from "@react-navigation/native";
 import { goTo } from "../../core/navigation/Navigator";
 import RandomUserMe from "../../core/models/api/RandomUser.me";
@@ -60,7 +60,8 @@ const ContextMenuOption = (props: ContextMenuOptionProps) => {
             />
           )}
         </View>
-        <Text style={fonts().h3}>{props.label}</Text>
+
+        <Text style={{ ...fonts().h2, fontSize: 20 }}>{props.label}</Text>
       </TouchableOpacity>
     </>
   );

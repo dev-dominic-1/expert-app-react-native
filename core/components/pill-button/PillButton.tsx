@@ -2,6 +2,7 @@ import React from "react";
 import { Text, TextStyle, TouchableOpacity, ViewStyle } from "react-native";
 import { styles as PillButtonStyles } from "./PillButton.styles";
 import { colors } from "../../styles/Global.styles";
+import { CrossPlatformElevation } from "../../styles/CrossPlatformElevation.styles";
 
 interface PillButtonProps {
   title: string;
@@ -24,6 +25,7 @@ export const PillButton = (props: PillButtonProps) => {
             backgroundColor: "transparent",
             borderColor: colors.accentDark,
             borderWidth: 1,
+            ...CrossPlatformElevation(0),
           }
         : {}),
       ...(props.style?.button ?? {}), // Custom styles

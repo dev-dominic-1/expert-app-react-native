@@ -51,9 +51,6 @@ const UpcomingCallCard = (props: CallCardProps) => {
         title="Call Details"
         onPress={() => props.onPress()}
         variant={"filled"}
-        style={{
-          text: { fontWeight: "bold", fontSize: 16 },
-        }}
       />
     </View>
   );

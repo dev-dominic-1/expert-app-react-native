@@ -31,14 +31,14 @@ const CallDetails = (props: CallDetailsProps) => {
         <Text>{callDetails.hostName}</Text>
         <View style={{ flex: 2 }}>
           <View style={{ flexDirection: "row" }}>
-            <View style={{ paddingRight: 8 }}>
+            <View style={{ paddingRight: 8, width: "50%" }}>
               <PillButton
                 title="Edit Review"
                 onPress={() => {}}
                 variant={"outlined"}
               />
             </View>
-            <View style={{ paddingLeft: 8 }}>
+            <View style={{ paddingLeft: 8, width: "50%" }}>
               <PillButton
                 title="Add Review"
                 onPress={() => {}}

@@ -18,12 +18,10 @@ export const styles: PillButtonStyles = StyleSheet.create({
     width: "auto",
     ...CrossPlatformElevation(),
   },
-  text: Object.assign(
-    {
-      color: "white",
-      paddingHorizontal: 32,
-      textAlign: "center",
-    },
-    systemFonts.body1,
-  ),
+  text: Object.assign(fonts().h3, {
+    color: "white",
+    paddingHorizontal: 32,
+    textAlign: "center",
+    fontSize: 16,
+  }),
 });
