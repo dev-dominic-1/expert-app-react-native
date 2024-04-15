@@ -55,7 +55,7 @@ const TitleBar = (props: TitleBarProps) => {
           ...flexStyle,
           alignItems: "center",
           paddingTop: 8,
-          paddingHorizontal: 20,
+          paddingHorizontal: 8,
           width: "100%",
         }}
       >
@@ -64,6 +64,7 @@ const TitleBar = (props: TitleBarProps) => {
             name="menu"
             size={24}
             color={colors.primaryDark}
+            style={{ padding: 12 }}
           />
         </TouchableOpacity>
         <Image
@@ -79,6 +80,7 @@ const TitleBar = (props: TitleBarProps) => {
             name="home"
             size={24}
             color={colors.primaryDark}
+            style={{ padding: 12 }}
           />
         </TouchableOpacity>
       </View>

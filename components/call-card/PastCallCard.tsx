@@ -8,6 +8,7 @@ import { CrossPlatformElevation } from "../../core/styles/CrossPlatformElevation
 
 interface PastCallCardProps {
   callDetails: Call;
+  onPress: Function;
 }
 const PastCallCard = (props: PastCallCardProps) => {
   const { hostName, timestamp, topic } = props.callDetails;
@@ -41,7 +42,7 @@ const PastCallCard = (props: PastCallCardProps) => {
       </View>
       <PillButton
         title="Call Details"
-        onPress={() => {}}
+        onPress={() => props.onPress()}
         variant="outlined"
         style={{
           button: CrossPlatformElevation(0),

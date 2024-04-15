@@ -4,6 +4,7 @@ import { fonts } from "../../core/styles/Global.styles";
 import { pastCalls, upcomingCalls } from "../../core/models/tempData/CallData";
 import UpcomingCallCard from "../../components/call-card/UpcomingCallCard";
 import PastCallCard from "../../components/call-card/PastCallCard";
+import { goTo } from "../../core/navigation/Navigator";
 
 interface AllCallsProps {
   navigation: any;
@@ -30,6 +31,9 @@ const MyCalls = (props: AllCallsProps) => {
           <UpcomingCallCard
             key={`upcoming-call-${index}`}
             callDetails={call}
+            onPress={() =>
+              goTo(props.navigation, "Call Details", false, { call })
+            }
           />
         ))}
       </View>
@@ -39,10 +43,13 @@ const MyCalls = (props: AllCallsProps) => {
           <PastCallCard
             key={`past-call-${index}`}
             callDetails={call}
+            onPress={() =>
+              goTo(props.navigation, "Call Details", false, { call })
+            }
           />
         ))}
       </View>
-      <View style={{ height: 48 }} />
+      <View style={{ height: 24 }} />
     </ScrollView>
   );
 };

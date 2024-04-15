@@ -4,6 +4,7 @@ export function goTo(
   nav: { navigate: Function; [key: string]: any },
   ref: string,
   resetStack?: boolean,
+  props?: object,
 ) {
   if (resetStack) {
     nav.reset({
@@ -11,6 +12,6 @@ export function goTo(
       routes: [{ name: ref }],
     });
   } else {
-    nav.navigate(ref);
+    nav.navigate(ref, props ?? {});
   }
 }

@@ -14,7 +14,6 @@ import { Feather } from "@expo/vector-icons";
 import UpcomingCallCard from "../../components/call-card/UpcomingCallCard";
 import {
   upcomingCalls,
-  pastCalls,
   upcomingGroupCalls,
 } from "../../core/models/tempData/CallData";
 import GroupCallAd from "../../components/group-call-ad/GroupCallAd";
@@ -73,6 +72,9 @@ export const Home = (props: { navigation: NavigationProp<any> }) => {
           <UpcomingCallCard
             key={`upcoming-call-${index}`}
             callDetails={call}
+            onPress={() =>
+              goTo(props.navigation, "Call Details", false, { call })
+            }
           />
         ))}
       </View>

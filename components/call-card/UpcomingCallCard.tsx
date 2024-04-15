@@ -10,14 +10,10 @@ import { PillButton } from "../../core/components/pill-button/PillButton";
 
 interface CallCardProps {
   callDetails: Call;
+  onPress: Function;
 }
 const UpcomingCallCard = (props: CallCardProps) => {
   const { title, timestamp, hostName } = props.callDetails;
-
-  const [image, setImage] = React.useState<string>();
-  useEffect(() => {
-    RandomUserMe.getLarge().then((r) => setImage(r));
-  }, []);
 
   return (
     <View
@@ -53,7 +49,7 @@ const UpcomingCallCard = (props: CallCardProps) => {
       </View>
       <PillButton
         title="Call Details"
-        onPress={() => {}}
+        onPress={() => props.onPress()}
         variant={"filled"}
         style={{
           text: { fontWeight: "bold", fontSize: 16 },
