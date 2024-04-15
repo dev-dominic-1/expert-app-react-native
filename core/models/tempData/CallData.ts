@@ -23,3 +23,20 @@ export const pastCalls = [
     "Using Excel to Budget",
   ),
 ];
+
+export const upcomingGroupCalls = [
+  new Call(
+    "Marketing Q&A",
+    "10/18/24 4:00PM",
+    "Rachel Adams",
+    undefined,
+    require("../../../assets/calls/img_Marketing_Group_Call.png"),
+  ),
+  new Call(
+    "Python Animations",
+    "10/28/24 3:30PM",
+    "Dominic Hiland",
+    undefined,
+    require("../../../assets/calls/img_Python_Group_Call.png"),
+  ),
+];

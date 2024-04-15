@@ -13,7 +13,12 @@ import WelcomeMessage from "./welcome-message/WelcomeMessage";
 import { Feather } from "@expo/vector-icons";
 import UpcomingCallCard from "../call-card/UpcomingCallCard";
 import PastCallCard from "../call-card/PastCallCard";
-import { upcomingCalls, pastCalls } from "../../core/models/tempData/CallData";
+import {
+  upcomingCalls,
+  pastCalls,
+  upcomingGroupCalls,
+} from "../../core/models/tempData/CallData";
+import GroupCallAd from "../group-call-ad/GroupCallAd";
 
 export const Home = (props: { navigation: NavigationProp<any> }) => {
   const sectionStyle: ViewStyle = {
@@ -78,15 +83,19 @@ export const Home = (props: { navigation: NavigationProp<any> }) => {
           width: "100%",
         }}
       >
-        <Text style={fonts().h4}>Previous Calls</Text>
+        <Text style={fonts().h4}>Upcoming Group Calls for You</Text>
       </View>
       <View style={sectionStyle}>
-        {pastCalls.map((call, index) => (
-          <PastCallCard
-            key={`past-call-${index}`}
-            callDetails={call}
-          />
-        ))}
+        <View style={{ flex: 2, gap: 24, width: "100%" }}>
+          <View style={{ flexDirection: "row" }}>
+            <View style={{ width: "50%", paddingRight: 12 }}>
+              <GroupCallAd callDetails={upcomingGroupCalls[0]} />
+            </View>
+            <View style={{ width: "50%", paddingLeft: 12 }}>
+              <GroupCallAd callDetails={upcomingGroupCalls[1]} />
+            </View>
+          </View>
+        </View>
       </View>
       <View style={{ height: 24 }} />
     </ScrollView>

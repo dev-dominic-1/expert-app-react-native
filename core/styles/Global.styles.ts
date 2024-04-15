@@ -53,14 +53,14 @@ export const iosFonts: Fonts = {
   h2: { fontFamily: "Arial", fontSize: 24 },
   h3: { fontFamily: "Arial", fontSize: 20, fontWeight: "600" },
   h4: { fontFamily: "Arial", fontSize: 20 },
-  h5: { fontFamily: "Arial", fontSize: 18, fontWeight: "500" },
+  h5: { fontFamily: "Arial", fontSize: 18, fontWeight: "600" },
   h6: { fontFamily: "Arial", fontSize: 16 },
   h7: { fontFamily: "Arial", fontSize: 14 },
   body1: { fontFamily: "Arial", fontSize: 20, fontWeight: "300" },
   body2: { fontFamily: "Arial", fontSize: 18 },
   body3: { fontFamily: "Arial", fontSize: 16, fontWeight: "300" },
-  subtitle1: { fontFamily: "Arial", fontSize: 14, fontWeight: "300" },
-  subtitle2: { fontFamily: "Arial", fontSize: 12, fontWeight: "200" },
+  subtitle1: { fontFamily: "Arial", fontSize: 14 },
+  subtitle2: { fontFamily: "Arial", fontSize: 12 },
 };
 
 export const androidFonts: Fonts = {
@@ -74,8 +74,8 @@ export const androidFonts: Fonts = {
   body1: { fontFamily: "Roboto-Light", fontSize: 20 },
   body2: { fontFamily: "Roboto-Regular", fontSize: 18 },
   body3: { fontFamily: "Roboto-Light", fontSize: 16 },
-  subtitle1: { fontFamily: "Roboto-Light", fontSize: 14 },
-  subtitle2: { fontFamily: "Roboto-Thin", fontSize: 12 },
+  subtitle1: { fontFamily: "Roboto", fontSize: 14 },
+  subtitle2: { fontFamily: "Roboto", fontSize: 12 },
 };
 
 /**
