@@ -50,7 +50,7 @@ export interface Fonts {
 
 export const iosFonts: Fonts = {
   h1: { fontFamily: "Arial", fontSize: 24, fontWeight: "600" },
-  h2: { fontFamily: "Arial", fontSize: 24 },
+  h2: { fontFamily: "Arial", fontSize: 22 },
   h3: { fontFamily: "Arial", fontSize: 20, fontWeight: "600" },
   h4: { fontFamily: "Arial", fontSize: 20 },
   h5: { fontFamily: "Arial", fontSize: 18, fontWeight: "600" },
@@ -65,7 +65,7 @@ export const iosFonts: Fonts = {
 
 export const androidFonts: Fonts = {
   h1: { fontFamily: "Roboto-Bold", fontSize: 24 },
-  h2: { fontFamily: "Roboto-Regular", fontSize: 24 },
+  h2: { fontFamily: "Roboto-Regular", fontSize: 22 },
   h3: { fontFamily: "Roboto-Bold", fontSize: 20 },
   h4: { fontFamily: "Roboto-Regular", fontSize: 20 },
   h5: { fontFamily: "Roboto-Medium", fontSize: 18 },

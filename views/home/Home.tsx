@@ -7,18 +7,18 @@ import {
   ViewStyle,
 } from "react-native";
 import { NavigationProp } from "@react-navigation/native";
-import { fonts } from "../../core/styles/Global.styles";
+import { colors, fonts } from "../../core/styles/Global.styles";
 import FindExpertTextInput from "./find-expert-text-input/FindExpertTextInput";
 import WelcomeMessage from "./welcome-message/WelcomeMessage";
 import { Feather } from "@expo/vector-icons";
-import UpcomingCallCard from "../call-card/UpcomingCallCard";
-import PastCallCard from "../call-card/PastCallCard";
+import UpcomingCallCard from "../../components/call-card/UpcomingCallCard";
 import {
   upcomingCalls,
   pastCalls,
   upcomingGroupCalls,
 } from "../../core/models/tempData/CallData";
-import GroupCallAd from "../group-call-ad/GroupCallAd";
+import GroupCallAd from "../../components/group-call-ad/GroupCallAd";
+import { goTo } from "../../core/navigation/Navigator";
 
 export const Home = (props: { navigation: NavigationProp<any> }) => {
   const sectionStyle: ViewStyle = {
@@ -35,6 +35,7 @@ export const Home = (props: { navigation: NavigationProp<any> }) => {
         gap: 24,
         paddingTop: 20,
         paddingHorizontal: 16,
+        backgroundColor: colors.background,
       }}
     >
       <View style={sectionStyle}>
@@ -56,11 +57,11 @@ export const Home = (props: { navigation: NavigationProp<any> }) => {
               flexDirection: "row",
               alignItems: "center",
             }}
-            onPress={() => {}}
+            onPress={() => {
+              goTo(props.navigation, "My Calls");
+            }}
           >
-            <Text style={{ ...fonts().body3, fontWeight: "600" }}>
-              All Calls
-            </Text>
+            <Text style={{ ...fonts().body2, fontSize: 16 }}>All Calls</Text>
             <Feather
               name="chevron-right"
               size={24}

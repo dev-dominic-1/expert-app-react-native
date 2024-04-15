@@ -9,6 +9,8 @@ import ContextMenuUnderlay from "./components/context-menu/ContextMenuUnderlay";
 import ContextMenuOptions from "./components/context-menu/ContextMenuOptions";
 import ContextMenu from "./components/context-menu/ContextMenu";
 import { useFonts } from "expo-font";
+import { colors } from "./core/styles/Global.styles";
+import NavHeader from "./core/navigation/NavHeader";
 
 export default function App() {
   // We need to substitute font families for font weights on android
@@ -37,13 +39,18 @@ export default function App() {
             onPressContextMenu={() => setOpenContextMenu(true)}
           />
 
-          <Stack.Navigator initialRouteName={"Home"}>
+          <Stack.Navigator
+            initialRouteName={"Home"}
+            screenOptions={{
+              contentStyle: { backgroundColor: colors.background },
+            }}
+          >
             {navScreens.map((s, i) => (
               <Stack.Screen
                 key={`app__nav-screen-${i}`}
                 name={s.name}
                 component={s.component}
-                options={{ headerShown: false }}
+                options={{ header: NavHeader, headerShown: !!s.showNav }}
               />
             ))}
           </Stack.Navigator>
