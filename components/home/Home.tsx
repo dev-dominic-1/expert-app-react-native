@@ -13,43 +13,9 @@ import WelcomeMessage from "./welcome-message/WelcomeMessage";
 import { Feather } from "@expo/vector-icons";
 import UpcomingCallCard from "../call-card/UpcomingCallCard";
 import PastCallCard from "../call-card/PastCallCard";
-import Call from "../../core/models/Call";
+import { upcomingCalls, pastCalls } from "../../core/models/tempData/CallData";
 
 export const Home = (props: { navigation: NavigationProp<any> }) => {
-  const upcomingCalls: Call[] = [
-    new Call(
-      "Translating Georgian Idioms",
-      "Friday, October 20th, 2:00PM",
-      "Lisa Millas",
-    ),
-    new Call(
-      "3D Printing Efficiency",
-      "Friday, October 27th, 5:00PM",
-      "Frank Herb",
-    ),
-  ];
-
-  const pastCalls: Call[] = [
-    new Call(
-      "",
-      "August 16th, 10:30AM",
-      "Peter Wendt",
-      "Finding Cheap Flights",
-    ),
-    new Call(
-      "",
-      "September 29th, 2:00PM",
-      "Arthur Spellman",
-      "Editing TikToks",
-    ),
-    new Call(
-      "",
-      "September 24th, 1:30PM",
-      "Jessica Edison",
-      "Using Excel to Budget",
-    ),
-  ];
-
   const sectionStyle: ViewStyle = {
     gap: 12,
     alignItems: "center",
