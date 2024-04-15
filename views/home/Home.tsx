@@ -35,7 +35,6 @@ export const Home = (props: { navigation: NavigationProp<any> }) => {
         gap: 24,
         paddingTop: 20,
         paddingHorizontal: 16,
-        backgroundColor: colors.background,
       }}
     >
       <View style={sectionStyle}>
