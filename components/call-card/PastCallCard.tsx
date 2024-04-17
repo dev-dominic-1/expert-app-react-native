@@ -17,41 +17,61 @@ const PastCallCard = (props: PastCallCardProps) => {
   return (
     <View
       style={{
-        backgroundColor: colors.cardColor,
+        position: "relative",
         width: "100%",
-        overflow: "hidden",
-        flexDirection: "column",
-        gap: 8,
-        padding: 16,
         borderRadius: 12,
         ...CrossPlatformElevation(4),
       }}
     >
-      <View style={{ flexDirection: "row", gap: 16 }}>
-        <HostImageAlt photoUrl={expert?.photoUrl.LARGE} />
-        <View
-          style={{
-            flexDirection: "column",
-            height: 85,
-            justifyContent: "space-around",
-          }}
-        >
-          <Text style={{ ...fonts().h5, fontSize: 16 }}>{expert?.name}</Text>
-          <Text style={fonts().h7}>"{title}"</Text>
-          <Text
-            style={fonts().h7}
-          >{`${MomentWrapper.dateFormatShort(callDetails?.date ?? "")}, ${MomentWrapper.timeFormat(callDetails?.time ?? "")}`}</Text>
-        </View>
-      </View>
-      <PillButton
-        title="Call Details"
-        onPress={() => props.onPress()}
-        variant="outlined"
+      <View
         style={{
-          button: CrossPlatformElevation(0),
-          text: { fontSize: 16 },
+          position: "absolute",
+          height: "100%",
+          width: "100%",
+          top: 0,
+          left: 0,
+          borderRadius: 12,
         }}
-      />
+      ></View>
+      <View
+        style={{
+          top: 0,
+          left: 0,
+          backgroundColor: colors.cardColor,
+          width: "100%",
+          overflow: "hidden",
+          flexDirection: "column",
+          gap: 8,
+          padding: 16,
+          borderRadius: 12,
+        }}
+      >
+        <View style={{ flexDirection: "row", gap: 16 }}>
+          <HostImageAlt photoUrl={expert?.photoUrl.LARGE} />
+          <View
+            style={{
+              flexDirection: "column",
+              height: 85,
+              justifyContent: "space-around",
+            }}
+          >
+            <Text style={{ ...fonts().h5, fontSize: 16 }}>{expert?.name}</Text>
+            <Text style={fonts().h7}>"{title}"</Text>
+            <Text
+              style={fonts().h7}
+            >{`${MomentWrapper.dateFormatShort(callDetails?.date ?? "")}, ${MomentWrapper.timeFormat(callDetails?.time ?? "")}`}</Text>
+          </View>
+        </View>
+        <PillButton
+          title="Call Details"
+          onPress={() => props.onPress()}
+          variant="outlined"
+          style={{
+            button: CrossPlatformElevation(0),
+            text: { fontSize: 16 },
+          }}
+        />
+      </View>
     </View>
   );
 };

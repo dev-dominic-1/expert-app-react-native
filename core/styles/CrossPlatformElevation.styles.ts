@@ -6,7 +6,8 @@ export const CrossPlatformElevation = (elevation: number = 3): ViewStyle => {
       return { elevation };
     default:
       return {
-        shadowColor: "rgba(0,0,0,0.25)",
+        shadowColor: "rgba(0,0,0,1)",
+        shadowOpacity: 0.25,
         shadowOffset: { height: elevation, width: 0 },
         shadowRadius: elevation * 1.25,
       };
