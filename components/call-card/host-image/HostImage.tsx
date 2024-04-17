@@ -3,18 +3,10 @@ import RandomUserMe from "../../../core/models/api/RandomUser.me";
 import { Image, View } from "react-native";
 import { colors } from "../../../core/styles/Global.styles";
 
-interface HostImageProps {}
+interface HostImageProps {
+  photoUrl?: string;
+}
 const HostImage = (props: HostImageProps) => {
-  const [image, setImage] = React.useState<string>();
-  const pullImage = (): void => {
-    RandomUserMe.getLarge()
-      .then((r) => setImage(r))
-      .catch(() => pullImage());
-  };
-  useEffect(() => {
-    pullImage();
-  }, []);
-
   return (
     <View
       style={{
@@ -22,7 +14,7 @@ const HostImage = (props: HostImageProps) => {
       }}
     >
       <Image
-        source={{ uri: image }}
+        source={{ uri: props.photoUrl }}
         style={{
           height: 93,
           width: 93,

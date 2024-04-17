@@ -18,6 +18,7 @@ import {
 } from "../../core/models/tempData/CallData";
 import GroupCallAd from "../../components/group-call-ad/GroupCallAd";
 import { goTo } from "../../core/navigation/Navigator";
+import Call from "../../core/models/Call";
 
 export const Home = (props: { navigation: NavigationProp<any> }) => {
   const sectionStyle: ViewStyle = {

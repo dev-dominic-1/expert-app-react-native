@@ -48,7 +48,12 @@ export const PillButton = (props: PillButtonProps) => {
       style={pressableStyles}
       onPress={props.onPress}
     >
-      <Text style={textStyles}>{props.title}</Text>
+      <Text
+        numberOfLines={1}
+        style={textStyles}
+      >
+        {props.title}
+      </Text>
     </TouchableOpacity>
   );
 };

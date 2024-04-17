@@ -5,13 +5,14 @@ import { colors, fonts } from "../../core/styles/Global.styles";
 import HostImageAlt from "./host-image/HostImageAlt";
 import { PillButton } from "../../core/components/pill-button/PillButton";
 import { CrossPlatformElevation } from "../../core/styles/CrossPlatformElevation.styles";
+import MomentWrapper from "../../core/models/api/MomentWrapper";
 
 interface PastCallCardProps {
   callDetails: Call;
   onPress: Function;
 }
 const PastCallCard = (props: PastCallCardProps) => {
-  const { hostName, timestamp, topic } = props.callDetails;
+  const { title, callDetails, expert } = props.callDetails;
 
   return (
     <View
@@ -27,7 +28,7 @@ const PastCallCard = (props: PastCallCardProps) => {
       }}
     >
       <View style={{ flexDirection: "row", gap: 16 }}>
-        <HostImageAlt />
+        <HostImageAlt photoUrl={expert?.photoUrl.LARGE} />
         <View
           style={{
             flexDirection: "column",
@@ -35,9 +36,11 @@ const PastCallCard = (props: PastCallCardProps) => {
             justifyContent: "space-around",
           }}
         >
-          <Text style={{ ...fonts().h5, fontSize: 16 }}>{hostName}</Text>
-          <Text style={fonts().h7}>"{topic}"</Text>
-          <Text style={fonts().h7}>{timestamp}</Text>
+          <Text style={{ ...fonts().h5, fontSize: 16 }}>{expert?.name}</Text>
+          <Text style={fonts().h7}>"{title}"</Text>
+          <Text
+            style={fonts().h7}
+          >{`${MomentWrapper.dateFormatShort(callDetails?.date ?? "")}, ${MomentWrapper.timeFormat(callDetails?.time ?? "")}`}</Text>
         </View>
       </View>
       <PillButton

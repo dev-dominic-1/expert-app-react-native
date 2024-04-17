@@ -2,18 +2,18 @@ import React, { useEffect } from "react";
 import { Image, Text, View } from "react-native";
 import Call from "../../core/models/Call";
 import { colors, fonts } from "../../core/styles/Global.styles";
-import RandomUserMe from "../../core/models/api/RandomUser.me";
 import HostImage from "./host-image/HostImage";
 import { CrossPlatformElevation } from "../../core/styles/CrossPlatformElevation.styles";
 import { Feather } from "@expo/vector-icons";
 import { PillButton } from "../../core/components/pill-button/PillButton";
+import MomentWrapper from "../../core/models/api/MomentWrapper";
 
 interface CallCardProps {
   callDetails: Call;
   onPress: Function;
 }
 const UpcomingCallCard = (props: CallCardProps) => {
-  const { title, timestamp, hostName } = props.callDetails;
+  const { title, callDetails, expert } = props.callDetails;
 
   return (
     <View
@@ -28,7 +28,7 @@ const UpcomingCallCard = (props: CallCardProps) => {
       }}
     >
       <View style={{ flexDirection: "row", gap: 16 }}>
-        <HostImage />
+        <HostImage photoUrl={expert?.photoUrl.LARGE} />
         <View
           style={{
             flexDirection: "column",
@@ -42,9 +42,11 @@ const UpcomingCallCard = (props: CallCardProps) => {
               name="clock"
               size={14}
             />
-            <Text style={fonts().h7}>{timestamp}</Text>
+            <Text
+              style={fonts().h7}
+            >{`${MomentWrapper.dateFormat(callDetails?.date ?? "")}, ${MomentWrapper.timeFormat(callDetails?.time ?? "")}`}</Text>
           </View>
-          <Text style={fonts().h7}>{hostName}</Text>
+          <Text style={fonts().h7}>{expert?.name}</Text>
         </View>
       </View>
       <PillButton

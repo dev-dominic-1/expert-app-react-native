@@ -1,42 +1,37 @@
 import Call from "../Call";
 
-export const upcomingCalls = [
-  new Call(
-    "Translating Georgian Idioms",
-    "Friday, October 20th, 2:00PM",
-    "Lisa Millas",
-  ),
-  new Call(
-    "3D Printing Efficiency",
-    "Friday, October 27th, 5:00PM",
-    "Frank Herb",
-  ),
-];
-
-export const pastCalls = [
-  new Call("", "August 16th, 10:30AM", "Peter Wendt", "Finding Cheap Flights"),
-  new Call("", "September 29th, 2:00PM", "Arthur Spellman", "Editing TikToks"),
-  new Call(
-    "",
-    "September 24th, 1:30PM",
-    "Jessica Edison",
-    "Using Excel to Budget",
-  ),
-];
-
-export const upcomingGroupCalls = [
-  new Call(
+export const calls: { [key: number]: Call } = {
+  1: new Call(1, 1, "Finding Cheap Flights"),
+  2: new Call(2, 4, "Editing TikToks"),
+  3: new Call(3, 5, "Using Excel to Budget"),
+  4: new Call(4, 2, "Translating Georgian Idioms"),
+  5: new Call(5, 3, "3D Printing Efficiency"),
+  6: new Call(
+    6,
+    6,
     "Marketing Q&A",
-    "10/18/24 4:00PM",
-    "Rachel Adams",
-    undefined,
     require("../../../assets/calls/img_Marketing_Group_Call.png"),
   ),
-  new Call(
+  7: new Call(
+    7,
+    7,
     "Python Animations",
-    "10/28/24 3:30PM",
-    "Dominic Hiland",
-    undefined,
     require("../../../assets/calls/img_Python_Group_Call.png"),
   ),
+};
+
+export const upcomingCalls: Call[] = [
+  Call.getCall(4) as Call,
+  Call.getCall(5) as Call,
+];
+
+export const pastCalls: Call[] = [
+  Call.getCall(1) as Call,
+  Call.getCall(2) as Call,
+  Call.getCall(3) as Call,
+];
+
+export const upcomingGroupCalls: Call[] = [
+  Call.getCall(6) as Call,
+  Call.getCall(7) as Call,
 ];

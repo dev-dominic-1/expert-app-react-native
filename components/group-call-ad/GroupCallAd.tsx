@@ -3,13 +3,14 @@ import { View, Text, Image, ViewStyle } from "react-native";
 import Call from "../../core/models/Call";
 import { colors, fonts } from "../../core/styles/Global.styles";
 import { CrossPlatformElevation } from "../../core/styles/CrossPlatformElevation.styles";
+import MomentWrapper from "../../core/models/api/MomentWrapper";
 
 interface GroupCallAdProps {
   callDetails: Call;
   style?: ViewStyle;
 }
 const GroupCallAd = (props: GroupCallAdProps) => {
-  const { title, timestamp, hostName, adImageUrl } = props.callDetails;
+  const { title, adImageUrl, callDetails, expert } = props.callDetails;
 
   return (
     <View
@@ -44,8 +45,10 @@ const GroupCallAd = (props: GroupCallAdProps) => {
         }}
       >
         <Text style={{ ...fonts().h5, fontSize: 14 }}>{title}</Text>
-        <Text style={fonts().subtitle1}>{hostName}</Text>
-        <Text style={fonts().subtitle1}>{timestamp}</Text>
+        <Text style={fonts().subtitle1}>{expert?.name}</Text>
+        <Text
+          style={fonts().subtitle1}
+        >{`${MomentWrapper.dateFormatCompact(callDetails?.date ?? "")} ${MomentWrapper.timeFormat(callDetails?.time ?? "")}`}</Text>
       </View>
     </View>
   );

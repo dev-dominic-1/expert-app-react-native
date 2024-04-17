@@ -2,12 +2,10 @@ import React, { useEffect } from "react";
 import { Image, View } from "react-native";
 import RandomUserMe from "../../../core/models/api/RandomUser.me";
 
-const HostImageAlt = () => {
-  const [image, setImage] = React.useState<string>();
-  useEffect(() => {
-    RandomUserMe.getLarge().then((r) => setImage(r));
-  }, []);
-
+interface HostImageAltProps {
+  photoUrl?: string;
+}
+const HostImageAlt = (props: HostImageAltProps) => {
   return (
     <View style={{ position: "relative", height: 93, width: 93 }}>
       <View
@@ -22,7 +20,7 @@ const HostImageAlt = () => {
         }}
       />
       <Image
-        source={{ uri: image }}
+        source={{ uri: props.photoUrl }}
         style={{
           height: 121,
           width: 121,
