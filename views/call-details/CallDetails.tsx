@@ -7,6 +7,7 @@ import Call from "../../core/models/Call";
 import { CrossPlatformElevation } from "../../core/styles/CrossPlatformElevation.styles";
 import MomentWrapper from "../../core/models/api/MomentWrapper";
 import RatingStars from "../../components/rating-stars/RatingStars";
+import { goTo } from "../../core/navigation/Navigator";
 
 interface CallDetailsProps {
   navigation: any;
@@ -106,17 +107,26 @@ const CallDetails = (props: CallDetailsProps) => {
             }}
           >
             <View style={{ paddingRight: 8, width: "50%" }}>
-              <PillButton
-                title="Edit Review"
-                onPress={() => {}}
-                variant={"outlined"}
-                style={{ text: { paddingHorizontal: 0 } }}
-              />
+              {!!callDetails?.review ? (
+                <PillButton
+                  title="Edit Review"
+                  onPress={() => goTo(props.navigation, "Edit Review")}
+                  variant={"outlined"}
+                  style={{ text: { paddingHorizontal: 0 } }}
+                />
+              ) : (
+                <PillButton
+                  title="Add Review"
+                  onPress={() => goTo(props.navigation, "Add Review")}
+                  variant="outlined"
+                  style={{ text: { paddingHorizontal: 0 } }}
+                />
+              )}
             </View>
             <View style={{ paddingLeft: 8, width: "50%" }}>
               <PillButton
                 title="Ask a Follow Up"
-                onPress={() => {}}
+                onPress={() => goTo(props.navigation, "Follow Up")}
                 variant={"filled"}
                 style={{ text: { paddingHorizontal: 0 } }}
               />

@@ -1,14 +1,19 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import { Octicons } from "@expo/vector-icons";
 import { colors } from "../../core/styles/Global.styles";
 
 interface RatingStarsProps {
   rating: number;
+  onPressStar?: (v: number) => void;
 }
 const RatingStars = (props: RatingStarsProps) => {
-  const getStarIcon = (selected: boolean, index: number) => {
-    return (
+  const getStarIcon = (
+    selected: boolean,
+    index: number,
+    clickEnabled?: boolean,
+  ) => {
+    const star = (
       <View
         key={`rating-star-${index}`}
         style={{ flexDirection: "row", justifyContent: "center" }}
@@ -20,15 +25,23 @@ const RatingStars = (props: RatingStarsProps) => {
         />
       </View>
     );
+    if (!!clickEnabled) {
+      return (
+        <TouchableOpacity onPress={() => props.onPressStar?.(index + 1)}>
+          {star}
+        </TouchableOpacity>
+      );
+    }
+    return star;
   };
 
   const starsContent = (rating: number): JSX.Element[] => {
     let result = [];
     for (let i = 0; i < 5; i++) {
-      result.push(getStarIcon(false, i));
+      result.push(getStarIcon(false, i, !!props.onPressStar));
     }
     for (let i = 0; i < rating; i++) {
-      result[i] = getStarIcon(true, i);
+      result[i] = getStarIcon(true, i, !!props.onPressStar);
     }
     return result;
   };

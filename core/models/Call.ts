@@ -22,7 +22,6 @@ export default class Call {
   static getCall = (id?: number): Call | Call[] => {
     if (!!id) {
       let call = calls[id];
-      console.log("CALL DETAILS", callDetails, id);
       call.callDetails = Object.values(callDetails).find(
         (cd) => cd.callId === id,
       );
