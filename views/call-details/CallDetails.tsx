@@ -8,6 +8,8 @@ import { CrossPlatformElevation } from "../../core/styles/CrossPlatformElevation
 import MomentWrapper from "../../core/models/api/MomentWrapper";
 import RatingStars from "../../components/rating-stars/RatingStars";
 import { goTo } from "../../core/navigation/Navigator";
+import EditReview from "../edit-review/EditReview";
+import GlobalContext from "../../core/global-context/GlobalContext";
 
 interface CallDetailsProps {
   navigation: any;
@@ -34,13 +36,18 @@ const CallDetails = (props: CallDetailsProps) => {
     ...CrossPlatformElevation(3),
   };
 
+  const [openEditReview, setOpenEditReview] = React.useState(false);
+
+  const context = React.useContext(GlobalContext);
+
   return (
-    <View
-      style={{
-        height: "100%",
-        flexDirection: "column",
-      }}
-    >
+    <View>
+      <EditReview
+        expert={expert}
+        callDetails={callDetails}
+        open={openEditReview}
+        onPressClose={() => setOpenEditReview(false)}
+      />
       <ScrollView
         contentContainerStyle={{
           alignItems: "center",
@@ -90,7 +97,11 @@ const CallDetails = (props: CallDetailsProps) => {
               Review
             </Text>
             <View style={cardStyle}>
-              <RatingStars rating={4} />
+              <RatingStars
+                rating={
+                  context.callDetails?.[callDetails?.id ?? -1]?.rating ?? 5
+                }
+              />
               {callDetails?.review ? (
                 <Text style={{ ...fonts().h6, lineHeight: 22, paddingTop: 8 }}>
                   {callDetails?.review}
@@ -110,14 +121,14 @@ const CallDetails = (props: CallDetailsProps) => {
               {!!callDetails?.review ? (
                 <PillButton
                   title="Edit Review"
-                  onPress={() => goTo(props.navigation, "Edit Review")}
+                  onPress={() => setOpenEditReview(true)}
                   variant={"outlined"}
                   style={{ text: { paddingHorizontal: 0 } }}
                 />
               ) : (
                 <PillButton
                   title="Add Review"
-                  onPress={() => goTo(props.navigation, "Add Review")}
+                  onPress={() => setOpenEditReview(true)}
                   variant="outlined"
                   style={{ text: { paddingHorizontal: 0 } }}
                 />

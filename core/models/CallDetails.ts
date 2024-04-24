@@ -1,4 +1,16 @@
-export default class CallDetails {
+export interface CallDetailsProperties {
+  id: number;
+  callId: number;
+  date: string;
+  time: string;
+  questionTitle?: string;
+  question?: string;
+  rating?: number;
+  review?: string;
+  comment?: string;
+}
+
+export default class CallDetails implements CallDetailsProperties {
   id!: number;
   callId!: number;
   date!: string;

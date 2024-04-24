@@ -5,12 +5,15 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import TitleBar from "./components/title-bar/TitleBar";
 import { Platform, View } from "react-native";
 import { navScreens } from "./core/navigation/NavScreens";
-import ContextMenuUnderlay from "./components/context-menu/ContextMenuUnderlay";
-import ContextMenuOptions from "./components/context-menu/ContextMenuOptions";
 import ContextMenu from "./components/context-menu/ContextMenu";
 import { useFonts } from "expo-font";
 import { colors } from "./core/styles/Global.styles";
 import NavHeader from "./core/navigation/NavHeader";
+import GlobalContext, {
+  AppState,
+  defaultAppState,
+} from "./core/global-context/GlobalContext";
+import ModalUnderlay from "./core/components/modal-underlay/ModalUnderlay";
 
 export default function App() {
   // We need to substitute font families for font weights on android
@@ -27,35 +30,48 @@ export default function App() {
 
   const [openContextMenu, setOpenContextMenu] = React.useState(false);
 
+  const [appState, setAppState] = React.useState<AppState>(defaultAppState);
+
   return (
     <SafeAreaProvider>
-      <NavigationContainer>
-        <View style={{ flex: 1 }}>
-          {openContextMenu ? (
-            <ContextMenu onPressOutside={() => setOpenContextMenu(false)} />
-          ) : null}
-          <TitleBar
-            style={{ zIndex: 2 }}
-            onPressContextMenu={() => setOpenContextMenu(true)}
-          />
+      <GlobalContext.Provider
+        value={{
+          ...appState,
+          updateState: (newState?: Partial<AppState>) =>
+            setAppState({ ...appState, ...newState }),
+        }}
+      >
+        <NavigationContainer>
+          <View style={{ flex: 1 }}>
+            {openContextMenu ? (
+              <ContextMenu onPressOutside={() => setOpenContextMenu(false)} />
+            ) : null}
 
-          <Stack.Navigator
-            initialRouteName={"Home"}
-            screenOptions={{
-              contentStyle: { backgroundColor: colors.background },
-            }}
-          >
-            {navScreens.map((s, i) => (
-              <Stack.Screen
-                key={`app__nav-screen-${i}`}
-                name={s.name}
-                component={s.component}
-                options={{ header: NavHeader, headerShown: !!s.showNav }}
-              />
-            ))}
-          </Stack.Navigator>
-        </View>
-      </NavigationContainer>
+            {appState.showModalUnderlay ? <ModalUnderlay /> : null}
+
+            <TitleBar
+              style={{ zIndex: 2 }}
+              onPressContextMenu={() => setOpenContextMenu(true)}
+            />
+
+            <Stack.Navigator
+              initialRouteName={"Home"}
+              screenOptions={{
+                contentStyle: { backgroundColor: colors.background },
+              }}
+            >
+              {navScreens.map((s, i) => (
+                <Stack.Screen
+                  key={`app__nav-screen-${i}`}
+                  name={s.name}
+                  component={s.component as any}
+                  options={{ header: NavHeader, headerShown: !!s.showNav }}
+                />
+              ))}
+            </Stack.Navigator>
+          </View>
+        </NavigationContainer>
+      </GlobalContext.Provider>
     </SafeAreaProvider>
   );
 }

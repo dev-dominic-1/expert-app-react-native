@@ -1,21 +1,23 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, TouchableWithoutFeedback } from "react-native";
 import { Octicons } from "@expo/vector-icons";
 import { colors } from "../../core/styles/Global.styles";
 
 interface RatingStarsProps {
   rating: number;
   onPressStar?: (v: number) => void;
+  uniqueKey?: string;
 }
 const RatingStars = (props: RatingStarsProps) => {
   const getStarIcon = (
     selected: boolean,
     index: number,
     clickEnabled?: boolean,
+    uniqueKey?: string,
   ) => {
     const star = (
       <View
-        key={`rating-star-${index}`}
+        key={`rating-star-${index}${uniqueKey ? `-${uniqueKey}` : ""}`}
         style={{ flexDirection: "row", justifyContent: "center" }}
       >
         <Octicons
@@ -27,9 +29,11 @@ const RatingStars = (props: RatingStarsProps) => {
     );
     if (!!clickEnabled) {
       return (
-        <TouchableOpacity onPress={() => props.onPressStar?.(index + 1)}>
+        <TouchableWithoutFeedback
+          onPress={() => props.onPressStar?.(index + 1)}
+        >
           {star}
-        </TouchableOpacity>
+        </TouchableWithoutFeedback>
       );
     }
     return star;
@@ -38,10 +42,10 @@ const RatingStars = (props: RatingStarsProps) => {
   const starsContent = (rating: number): JSX.Element[] => {
     let result = [];
     for (let i = 0; i < 5; i++) {
-      result.push(getStarIcon(false, i, !!props.onPressStar));
+      result.push(getStarIcon(false, i, !!props.onPressStar, props.uniqueKey));
     }
     for (let i = 0; i < rating; i++) {
-      result[i] = getStarIcon(true, i, !!props.onPressStar);
+      result[i] = getStarIcon(true, i, !!props.onPressStar, props.uniqueKey);
     }
     return result;
   };

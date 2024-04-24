@@ -1,6 +1,6 @@
 import CallDetails from "../CallDetails";
 
-export const callDetails = {
+export const callDetails: { [key: number]: CallDetails } = {
   1: new CallDetails(
     1,
     1,
@@ -55,3 +55,23 @@ export const callDetails = {
   6: new CallDetails(6, 6, "2024-10-18", "16:00"),
   7: new CallDetails(7, 7, "2024-10-28", "15:30"),
 };
+
+/**
+ * Dish up a record for update. Async ready for API integration
+ * @param {number} id Select a record to update by ID
+ * @param {() => CallDetails} callback Handle changes in a callback
+ */
+export async function dishCallDetails(
+  id: number,
+  callback: (el: CallDetails) => CallDetails,
+): Promise<void | string> {
+  return new Promise((resolve, reject) => {
+    let details = callDetails[id];
+    try {
+      callDetails[id] = callback(details);
+      resolve();
+    } catch (e: any) {
+      reject(e);
+    }
+  });
+}
