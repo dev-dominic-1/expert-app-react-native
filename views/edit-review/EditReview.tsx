@@ -29,13 +29,6 @@ const EditReview = (props: EditReviewProps) => {
 
   const { callDetails, expert } = props;
 
-  console.log(
-    "DETAILS",
-    context.callDetails,
-    callDetails?.id,
-    context.callDetails?.[callDetails?.id ?? -1],
-  );
-
   const [starRating, setStarRating] = React.useState<number>(
     context.callDetails?.[callDetails?.id ?? -1]?.rating ?? 5,
   );
