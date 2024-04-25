@@ -1,15 +1,18 @@
 import React from "react";
-import { View, Text, ScrollView, ViewStyle, Dimensions } from "react-native";
-import { colors, fonts } from "../../core/styles/Global.styles";
+import { View, Text, ScrollView, Dimensions } from "react-native";
+import { fonts } from "../../core/styles/Global.styles";
 import { PillButton } from "../../core/components/pill-button/PillButton";
-import HostImageAlt2 from "./HostImageAlt2";
 import Call from "../../core/models/Call";
-import { CrossPlatformElevation } from "../../core/styles/CrossPlatformElevation.styles";
 import MomentWrapper from "../../core/models/api/MomentWrapper";
 import RatingStars from "../../components/rating-stars/RatingStars";
 import { goTo } from "../../core/navigation/Navigator";
-import EditReview from "../edit-review/EditReview";
+import EditReview from "./edit-review/EditReview";
 import GlobalContext from "../../core/global-context/GlobalContext";
+import CallDetailHeader from "../supporting-components/call-detail-header/CallDetailHeader";
+import {
+  CallDetailsContext,
+  defaultCallDetailsState,
+} from "./CallDetails.context";
 
 interface CallDetailsProps {
   navigation: any;
@@ -22,130 +25,106 @@ const CallDetails = (props: CallDetailsProps) => {
   if (!call) return;
   const { expert, callDetails } = call;
 
-  const sectionStyle: ViewStyle = {
-    paddingTop: 16,
-    flexDirection: "column",
-    gap: 8,
-    width: "100%",
-  };
-
-  const cardStyle: ViewStyle = {
-    padding: 16,
-    backgroundColor: colors.cardColor,
-    borderRadius: 12,
-    ...CrossPlatformElevation(3),
-  };
-
   const [openEditReview, setOpenEditReview] = React.useState(false);
 
   const context = React.useContext(GlobalContext);
 
+  const {
+    card: cardStyle,
+    section: sectionStyle,
+    sectionLabel,
+    cardContent,
+  } = defaultCallDetailsState.style;
+
   return (
-    <View>
-      <EditReview
-        expert={expert}
-        callDetails={callDetails}
-        open={openEditReview}
-        onPressClose={() => setOpenEditReview(false)}
-      />
-      <ScrollView
-        contentContainerStyle={{
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 16,
-        }}
-      >
-        <View style={{ flexDirection: "row", width: "80%", gap: 24 }}>
-          <HostImageAlt2 photoUrl={call.expert?.photoUrl.LARGE} />
-          <View style={{ flexDirection: "column", justifyContent: "center" }}>
-            <Text style={{ ...fonts().h5, fontSize: 16, lineHeight: 24 }}>
-              {call.expert?.name}
-            </Text>
-            <Text>{expert?.bio}</Text>
-          </View>
-        </View>
-        <View style={{ height: 16 }} />
-        <View style={sectionStyle}>
-          <Text style={{ ...fonts().h5, fontSize: 16, textAlign: "left" }}>
-            Call Date and Time
-          </Text>
-          <View style={{ ...cardStyle, gap: 8 }}>
-            <Text style={{ ...fonts().h6 }}>
-              {MomentWrapper.dateFormat(callDetails?.date ?? "")}
-            </Text>
-            <Text style={fonts().h6}>
-              {MomentWrapper.timeFormat(callDetails?.time ?? "")}
-            </Text>
-          </View>
-        </View>
-        <View style={sectionStyle}>
-          <Text style={{ ...fonts().h5, fontSize: 16, textAlign: "left" }}>
-            Your Question
-          </Text>
-          <View style={cardStyle}>
-            <Text style={{ ...fonts().h5, fontSize: 16, textAlign: "left" }}>
-              {callDetails?.questionTitle}
-            </Text>
-            <Text style={{ ...fonts().h6, paddingTop: 8, lineHeight: 22 }}>
-              {callDetails?.question}
-            </Text>
-          </View>
-        </View>
-        {!!callDetails?.rating ? (
+    <CallDetailsContext.Provider value={defaultCallDetailsState}>
+      <View>
+        <EditReview
+          expert={expert}
+          callDetails={callDetails}
+          open={openEditReview}
+          onPressClose={() => setOpenEditReview(false)}
+        />
+        <ScrollView
+          contentContainerStyle={{
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 16,
+          }}
+        >
+          <CallDetailHeader expert={call.expert} />
           <View style={sectionStyle}>
-            <Text style={{ ...fonts().h5, fontSize: 16, textAlign: "left" }}>
-              Review
-            </Text>
+            <Text style={sectionLabel}>Call Date and Time</Text>
+            <View style={{ ...cardStyle, gap: 8 }}>
+              <Text style={{ ...fonts().h6 }}>
+                {MomentWrapper.dateFormat(callDetails?.date ?? "")}
+              </Text>
+              <Text style={fonts().h6}>
+                {MomentWrapper.timeFormat(callDetails?.time ?? "")}
+              </Text>
+            </View>
+          </View>
+          <View style={sectionStyle}>
+            <Text style={sectionLabel}>Your Question</Text>
             <View style={cardStyle}>
-              <RatingStars
-                rating={
-                  context.callDetails?.[callDetails?.id ?? -1]?.rating ?? 5
-                }
-              />
-              {callDetails?.review ? (
-                <Text style={{ ...fonts().h6, lineHeight: 22, paddingTop: 8 }}>
-                  {callDetails?.review}
-                </Text>
-              ) : null}
+              <Text style={sectionLabel}>{callDetails?.questionTitle}</Text>
+              <Text style={cardContent}>{callDetails?.question}</Text>
             </View>
           </View>
-        ) : null}
-        <View style={{ flex: 2, paddingTop: 24 }}>
-          <View
-            style={{
-              flexDirection: "row",
-              width: Dimensions.get("window").width - 32,
-            }}
-          >
-            <View style={{ paddingRight: 8, width: "50%" }}>
-              {!!callDetails?.review ? (
-                <PillButton
-                  title="Edit Review"
-                  onPress={() => setOpenEditReview(true)}
-                  variant={"outlined"}
-                  style={{ text: { paddingHorizontal: 0 } }}
+          {!!callDetails?.rating ? (
+            <View style={sectionStyle}>
+              <Text style={sectionLabel}>Review</Text>
+              <View style={cardStyle}>
+                <RatingStars
+                  rating={
+                    context.callDetails?.[callDetails?.id ?? -1]?.rating ?? 5
+                  }
                 />
-              ) : (
-                <PillButton
-                  title="Add Review"
-                  onPress={() => setOpenEditReview(true)}
-                  variant="outlined"
-                  style={{ text: { paddingHorizontal: 0 } }}
-                />
-              )}
+                {callDetails?.review ? (
+                  <Text style={cardContent}>{callDetails?.review}</Text>
+                ) : null}
+              </View>
             </View>
-            <View style={{ paddingLeft: 8, width: "50%" }}>
-              <PillButton
-                title="Ask a Follow Up"
-                onPress={() => goTo(props.navigation, "Follow Up")}
-                variant={"filled"}
-                style={{ text: { paddingHorizontal: 0 } }}
-              />
+          ) : null}
+          <View style={{ flex: 2, paddingTop: 24 }}>
+            <View
+              style={{
+                flexDirection: "row",
+                width: Dimensions.get("window").width - 32,
+              }}
+            >
+              <View style={{ paddingRight: 8, width: "50%" }}>
+                {!!callDetails?.review || !!callDetails?.rating ? (
+                  <PillButton
+                    title="Edit Review"
+                    onPress={() => setOpenEditReview(true)}
+                    variant={"outlined"}
+                    style={{ text: { paddingHorizontal: 0 } }}
+                  />
+                ) : (
+                  <PillButton
+                    title="Add Review"
+                    onPress={() => setOpenEditReview(true)}
+                    variant="outlined"
+                    style={{ text: { paddingHorizontal: 0 } }}
+                  />
+                )}
+              </View>
+              <View style={{ paddingLeft: 8, width: "50%" }}>
+                <PillButton
+                  title="Ask a Follow Up"
+                  onPress={() =>
+                    goTo(props.navigation, "Follow Up", false, { call })
+                  }
+                  variant={"filled"}
+                  style={{ text: { paddingHorizontal: 0 } }}
+                />
+              </View>
             </View>
           </View>
-        </View>
-      </ScrollView>
-    </View>
+        </ScrollView>
+      </View>
+    </CallDetailsContext.Provider>
   );
 };
 

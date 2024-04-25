@@ -8,15 +8,15 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { colors, fonts } from "../../core/styles/Global.styles";
-import { CrossPlatformElevation } from "../../core/styles/CrossPlatformElevation.styles";
+import { colors, fonts } from "../../../core/styles/Global.styles";
+import { CrossPlatformElevation } from "../../../core/styles/CrossPlatformElevation.styles";
 import { Feather } from "@expo/vector-icons";
-import Expert from "../../core/models/Expert";
-import RatingStars from "../../components/rating-stars/RatingStars";
-import CallDetails from "../../core/models/CallDetails";
-import { PillButton } from "../../core/components/pill-button/PillButton";
-import GlobalContext from "../../core/global-context/GlobalContext";
-import { dishCallDetails } from "../../core/models/tempData/CallDetailsData";
+import Expert from "../../../core/models/Expert";
+import RatingStars from "../../../components/rating-stars/RatingStars";
+import CallDetails from "../../../core/models/CallDetails";
+import { PillButton } from "../../../core/components/pill-button/PillButton";
+import GlobalContext from "../../../core/global-context/GlobalContext";
+import { dishCallDetails } from "../../../core/models/tempData/CallDetailsData";
 
 interface EditReviewProps {
   expert?: Expert;

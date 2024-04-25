@@ -2,9 +2,10 @@ import { Home } from "../../views/home/Home";
 import { Profile } from "../../views/profile/Profile";
 import MyCalls from "../../views/my-calls/MyCalls";
 import CallDetails from "../../views/call-details/CallDetails";
-import EditReview from "../../views/edit-review/EditReview";
+import EditReview from "../../views/call-details/edit-review/EditReview";
 import AddReview from "../../views/add-review/AddReview";
-import FollowUp from "../../views/follow-up/FollowUp";
+import FollowUp from "../../views/call-details/follow-up/FollowUp";
+import FollowUpPayment from "../../views/call-details/follow-up-payment/FollowUpPayment";
 
 export const navScreens = [
   { name: "Home", component: Home },
@@ -31,6 +32,12 @@ export const navScreens = [
   {
     name: "Follow Up",
     component: FollowUp,
+    showNav: true,
+    includeTitle: true,
+  },
+  {
+    name: "Follow Up Payment",
+    component: FollowUpPayment,
     showNav: true,
     includeTitle: true,
   },
