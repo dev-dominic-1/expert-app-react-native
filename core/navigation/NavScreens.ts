@@ -6,6 +6,7 @@ import EditReview from "../../views/call-details/edit-review/EditReview";
 import AddReview from "../../views/add-review/AddReview";
 import FollowUp from "../../views/call-details/follow-up/FollowUp";
 import ReviewQuestionDetails from "../../views/call-details/review-question-details/ReviewQuestionDetails";
+import PaymentConfirmation from "../../views/call-details/payment-confirmation/PaymentConfirmation";
 
 export const navScreens = [
   { name: "Home", component: Home },
@@ -40,5 +41,10 @@ export const navScreens = [
     component: ReviewQuestionDetails,
     showNav: true,
     includeTitle: true,
+  },
+  {
+    name: "Payment Confirmation",
+    component: PaymentConfirmation,
+    showNav: false,
   },
 ];

@@ -65,7 +65,10 @@ export default function App() {
                   key={`app__nav-screen-${i}`}
                   name={s.name}
                   component={s.component as any}
-                  options={{ header: NavHeader, headerShown: !!s.showNav }}
+                  options={{
+                    header: NavHeader,
+                    headerShown: !!s.showNav,
+                  }}
                 />
               ))}
             </Stack.Navigator>

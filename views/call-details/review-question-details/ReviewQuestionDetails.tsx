@@ -14,6 +14,8 @@ import { colors, fonts } from "../../../core/styles/Global.styles";
 import { CrossPlatformElevation } from "../../../core/styles/CrossPlatformElevation.styles";
 import GlobalContext from "../../../core/global-context/GlobalContext";
 import { Feather } from "@expo/vector-icons";
+import { PillButton } from "../../../core/components/pill-button/PillButton";
+import { goTo } from "../../../core/navigation/Navigator";
 
 interface FollowUpPaymentProps {
   navigation: any;
@@ -185,6 +187,22 @@ const ReviewQuestionDetails = (props: FollowUpPaymentProps) => {
               </View>
             </View>
           </View>
+        </View>
+        <View
+          style={{
+            ...sectionStyle,
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}
+        >
+          <PillButton
+            title="Confirm"
+            onPress={() =>
+              goTo(props.navigation, "Payment Confirmation", true, { call })
+            }
+            variant="filled"
+            style={{ button: { width: "50%" } }}
+          />
         </View>
       </View>
       <View style={{ height: 24 }} />
