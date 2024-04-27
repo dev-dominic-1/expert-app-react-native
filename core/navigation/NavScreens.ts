@@ -5,7 +5,7 @@ import CallDetails from "../../views/call-details/CallDetails";
 import EditReview from "../../views/call-details/edit-review/EditReview";
 import AddReview from "../../views/add-review/AddReview";
 import FollowUp from "../../views/call-details/follow-up/FollowUp";
-import FollowUpPayment from "../../views/call-details/follow-up-payment/FollowUpPayment";
+import ReviewQuestionDetails from "../../views/call-details/review-question-details/ReviewQuestionDetails";
 
 export const navScreens = [
   { name: "Home", component: Home },
@@ -36,8 +36,8 @@ export const navScreens = [
     includeTitle: true,
   },
   {
-    name: "Follow Up Payment",
-    component: FollowUpPayment,
+    name: "Review Question Details",
+    component: ReviewQuestionDetails,
     showNav: true,
     includeTitle: true,
   },

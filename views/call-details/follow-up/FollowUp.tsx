@@ -58,7 +58,10 @@ const FollowUp = (props: FollowUpProps) => {
         <PillButton
           title="Next Step"
           onPress={() =>
-            goTo(props.navigation, "Follow Up Payment", false, { call })
+            goTo(props.navigation, "Review Question Details", false, {
+              call,
+              followUp: followUpQuestion,
+            })
           }
           variant="filled"
           style={{ button: { width: "50%" } }}
