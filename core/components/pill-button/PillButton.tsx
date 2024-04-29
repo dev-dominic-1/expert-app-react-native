@@ -9,6 +9,7 @@ interface PillButtonProps {
   onPress: () => void;
   variant: "filled" | "outlined";
   height?: number;
+  disabled?: boolean;
   style?: {
     button?: ViewStyle;
     text?: TextStyle;
@@ -43,14 +44,31 @@ export const PillButton = (props: PillButtonProps) => {
     },
   };
 
+  const disabledStyles = {
+    button: {
+      backgroundColor: "grey",
+      opacity: 0.44,
+    },
+    text: {
+      color: "black",
+    },
+  };
+
   return (
     <TouchableOpacity
-      style={pressableStyles}
+      style={{
+        ...pressableStyles,
+        ...(props.disabled ? disabledStyles.button : {}),
+      }}
       onPress={props.onPress}
+      disabled={!!props.disabled}
     >
       <Text
         numberOfLines={1}
-        style={textStyles}
+        style={{
+          ...textStyles,
+          ...(props.disabled ? disabledStyles.text : {}),
+        }}
       >
         {props.title}
       </Text>

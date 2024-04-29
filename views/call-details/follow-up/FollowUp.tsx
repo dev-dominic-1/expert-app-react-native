@@ -56,6 +56,7 @@ const FollowUp = (props: FollowUpProps) => {
       </View>
       <View style={{ ...sectionStyle, alignItems: "flex-end", paddingTop: 48 }}>
         <PillButton
+          disabled={!followUpQuestion}
           title="Next Step"
           onPress={() =>
             goTo(props.navigation, "Review Question Details", false, {
