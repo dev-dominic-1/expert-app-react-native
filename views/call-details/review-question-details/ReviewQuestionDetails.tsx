@@ -65,19 +65,25 @@ const ReviewQuestionDetails = (props: FollowUpPaymentProps) => {
 
   const [taxAmount, total] = globalContext.functions.taxSubtotal(subtotal);
 
-  const ExpandComponent = (props: { onPress: () => void }) => {
+  const [expandCostBreakdown, setExpandCostBreakdown] = React.useState(false);
+  const [expandPaymentMethod, setExpandPaymentMethod] = React.useState(false);
+
+  const ExpandComponent = (props: { open: boolean; onPress: () => void }) => {
     return (
       <Pressable
         onPress={() => props.onPress()}
         style={{
-          position: "absolute",
-          height: 40,
-          width: 40,
-          top: -9,
-          right: -9,
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
+          ...{
+            position: "absolute",
+            height: 40,
+            width: 40,
+            top: -9,
+            right: -9,
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          },
+          ...(props.open ? { transform: [{ rotate: "-180deg" }] } : {}),
         }}
       >
         <Feather
@@ -126,8 +132,43 @@ const ReviewQuestionDetails = (props: FollowUpPaymentProps) => {
               >
                 {subtotal}
               </Text>
-              <ExpandComponent onPress={() => {}} />
+              <ExpandComponent
+                open={expandCostBreakdown}
+                onPress={() => setExpandCostBreakdown(!expandCostBreakdown)}
+              />
             </View>
+            {expandCostBreakdown ? (
+              <View style={{ width: "100%", paddingTop: 8 }}>
+                <View
+                  style={{
+                    width: 999,
+                    height: 1,
+                    backgroundColor: colors.secondary,
+                    transform: [{ translateX: -16 }],
+                  }}
+                />
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    paddingTop: 8,
+                  }}
+                >
+                  <Text style={paymentInfoCardStyle.text.regular}>CONTENT</Text>
+                  <Text>Content</Text>
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    paddingTop: 8,
+                  }}
+                >
+                  <Text>CONTENT</Text>
+                  <Text>Content</Text>
+                </View>
+              </View>
+            ) : null}
           </View>
           <View style={paymentInfoCardStyle.card}>
             <View
@@ -141,7 +182,10 @@ const ReviewQuestionDetails = (props: FollowUpPaymentProps) => {
               >
                 MasterCard ending in 1028
               </Text>
-              <ExpandComponent onPress={() => {}} />
+              <ExpandComponent
+                open={expandPaymentMethod}
+                onPress={() => {}}
+              />
             </View>
             <View
               style={{
