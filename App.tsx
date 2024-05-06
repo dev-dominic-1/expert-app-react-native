@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -14,6 +14,8 @@ import GlobalContext, {
   defaultAppState,
 } from "./core/global-context/GlobalContext";
 import ModalUnderlay from "./core/components/modal-underlay/ModalUnderlay";
+import UserConnection from "./core/models/api/UserConnection";
+import User from "./core/models/User";
 
 export default function App() {
   // We need to substitute font families for font weights on android
@@ -31,6 +33,16 @@ export default function App() {
   const [openContextMenu, setOpenContextMenu] = React.useState(false);
 
   const [appState, setAppState] = React.useState<AppState>(defaultAppState);
+
+  const [userOptions, setUserOptions] = React.useState<User[]>([]);
+
+  useEffect(() => {
+    new UserConnection()
+      .getAll()
+      .addQueryParameters({ includePhotoUrl: true })
+      .sendRequest()
+      .then((r) => setUserOptions(r as User[]));
+  }, []);
 
   return (
     <SafeAreaProvider>
