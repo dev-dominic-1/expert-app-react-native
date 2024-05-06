@@ -8,7 +8,6 @@ interface NavigationProps {
   route: any;
 }
 const NavHeader = (props: NavigationProps) => {
-  console.log("NAV PROPS", props);
   props.navigation;
   return (
     <View

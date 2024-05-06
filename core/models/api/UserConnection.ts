@@ -3,7 +3,6 @@ import User from "../User";
 
 export default class UserConnection extends ApiConnection<User> {
   #request!: UserConnection;
-  results: User[] = [];
 
   constructor() {
     super("User");

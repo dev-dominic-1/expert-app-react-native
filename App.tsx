@@ -16,6 +16,8 @@ import GlobalContext, {
 import ModalUnderlay from "./core/components/modal-underlay/ModalUnderlay";
 import UserConnection from "./core/models/api/UserConnection";
 import User from "./core/models/User";
+import ExpertConnection from "./core/models/api/ExpertConnection";
+import CallConnection from "./core/models/api/CallConnection";
 
 export default function App() {
   // We need to substitute font families for font weights on android
@@ -42,6 +44,16 @@ export default function App() {
       .addQueryParameters({ includePhotoUrl: true })
       .sendRequest()
       .then((r) => setUserOptions(r as User[]));
+    new ExpertConnection()
+      .getById(8)
+      .addQueryParameters({ includePhotoUrl: true, includeFees: true })
+      .sendRequest()
+      .then((r) => console.log("EXPERTS", r));
+    new CallConnection()
+      .getById(1)
+      .addQueryParameters({ includeCallDetails: true })
+      .sendRequest()
+      .then((r) => console.log("CALLS", r));
   }, []);
 
   return (
