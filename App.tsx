@@ -54,6 +54,10 @@ export default function App() {
       .addQueryParameters({ includeCallDetails: true })
       .sendRequest()
       .then((r) => console.log("CALLS", r));
+    new CallConnection()
+      .getUpcomingCalls()
+      .sendRequest()
+      .then((r) => console.log("UPCOMING CALLS", r));
   }, []);
 
   return (

@@ -18,4 +18,20 @@ export default class CallConnection extends ApiConnection<Call> {
       .withQueryParameters({ id });
     return this;
   };
+
+  getUpcomingCalls = (
+    userId?: number,
+    showMore?: boolean,
+    getAll?: boolean,
+  ): this => {
+    const queryParameters = {
+      ...(userId ? { userId } : {}),
+      ...(showMore ? { showMore } : {}),
+      ...(getAll ? { getAll } : {}),
+    };
+    this.#request = this.withMethod("GET")
+      .withEndpoint(["Call", "GetUpcomingCalls"])
+      .withQueryParameters(queryParameters);
+    return this;
+  };
 }
